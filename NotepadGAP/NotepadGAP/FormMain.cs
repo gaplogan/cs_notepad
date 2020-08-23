@@ -17,21 +17,48 @@ namespace NotepadGAP
     {
         public FormMain()
         {
-            InitializeComponent();
+            InitializeComponent();            
+            Gerenciador.VerificarRecentsFile();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
             Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
+            AtualizarHistoricoRecentes();
+        }
+
+        private void txtConteudo_TextChanged(object sender, EventArgs e)
+        {
+            Gerenciador.FileSaved = false;
+            Text = Application.ProductName + " - *" + Gerenciador.FileName + Gerenciador.FileExt;
+        }
+
+        private void txtConteudo_SelectionChanged(object sender, EventArgs e)
+        {
+            int index = txtConteudo.SelectionStart;
+            int line = txtConteudo.GetLineFromCharIndex(index) + 1;
+            statusBar_LabelLinhaColuna.Text = "Lin. " + line + ", Col." + ((index / line) + 1);
         }
 
         #region Menu Arquivo
         private void mArquivo_Novo_Click(object sender, EventArgs e)
         {
-            if (!Gerenciador.FileOpen)
+            if (!Gerenciador.FileSaved)
             {
-                MessageBox.Show($"Deseja salvar as alterações em \"{Gerenciador.FileName}{Gerenciador.FileExt}\" antes de sair?", "Salvar...", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+                DialogResult result = MessageBox.Show($"Deseja salvar as alterações em \"{Gerenciador.FileName}{Gerenciador.FileExt}\" antes de sair?", "Salvar...", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (result == DialogResult.Cancel || result == DialogResult.Abort)
+                    return;
+                else if (result == DialogResult.Yes)
+                    mArquivo_Salvar_Click(sender, e);                               
             }
+
+            Gerenciador.FileName = Gerenciador.DefaultFileName;
+            Gerenciador.FileExt = Gerenciador.DefaultFileExt;
+            Gerenciador.FolderPath = Gerenciador.DefaultFolderPath;
+
+            txtConteudo.Text = "";
+            Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
+            Gerenciador.FileSaved = true;
         }
 
         private void mArquivo_NovaJanela_Click(object sender, EventArgs e)
@@ -43,7 +70,37 @@ namespace NotepadGAP
 
         private void mArquivo_Abrir_Click(object sender, EventArgs e)
         {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Title = "Abrir...";
+            dialog.Filter = "texto|*.txt|próprio|*.npgap|todos|*.*";
 
+            DialogResult result = dialog.ShowDialog();
+            if (result != DialogResult.Cancel && result != DialogResult.Abort)
+            {
+                if (File.Exists(dialog.FileName))
+                {
+                    FileInfo f = new FileInfo(dialog.FileName);
+                    Gerenciador.FileName = (f.Name.Contains('.'))?f.Name.Substring(0, f.Name.LastIndexOf('.')):f.Name;
+                    Gerenciador.FileExt = f.Extension;
+                    Gerenciador.FolderPath = f.DirectoryName + "\\";
+
+                    StreamReader stream = new StreamReader(f.FullName, true);
+                    Encoding encoding = stream.CurrentEncoding;
+                    txtConteudo.Text = stream.ReadToEnd();
+                    statusBar_LabelEncoding.Text = encoding.EncodingName;
+                    statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
+                    stream.Close();                                        
+
+                    Gerenciador.AddRecente(f.FullName);
+                    AtualizarHistoricoRecentes();
+                    Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
+                    Gerenciador.FileSaved = true;
+                }
+                else
+                {
+                    MessageBox.Show("O arquivo não existe ou foi deletado.", "Erro ao tentar abrir", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
 
         private void mArquivo_Recentes_Click(object sender, EventArgs e)
@@ -203,5 +260,33 @@ namespace NotepadGAP
 
         }
         #endregion
+
+        private void AtualizarHistoricoRecentes()
+        {
+            if (Gerenciador.GetRecentes().Count < 1)
+            {
+                ToolStripMenuItem item = new ToolStripMenuItem();
+                item.Enabled = false;
+                item.Size = new Size(180, 22);
+                item.Text = "(Vázio)";
+                mArquivo_Recentes.DropDownItems.Add(item);
+            }
+            else
+            {
+                mArquivo_Recentes.DropDownItems.Clear();
+
+                foreach (string file in Gerenciador.GetRecentes())
+                {
+                    ToolStripMenuItem item = new ToolStripMenuItem();
+                    item.AutoSize = true;
+                    item.Enabled = true;
+                    item.Size = new Size(180, 22);
+                    item.Text = file;
+                    mArquivo_Recentes.DropDownItems.Add(item);
+                }
+
+                Gerenciador.AtualizarArquivoRecentes();
+            }            
+        }
     }
 }

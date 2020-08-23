@@ -78,12 +78,12 @@
             this.statusBar_LabelEncoding = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_LabelZoom = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusBar_LabelLinhaColuna = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.ContainerPrincipal = new System.Windows.Forms.ToolStripContainer();
             this.txtConteudo = new System.Windows.Forms.RichTextBox();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
-            this.toolStripContainer1.ContentPanel.SuspendLayout();
-            this.toolStripContainer1.SuspendLayout();
+            this.ContainerPrincipal.ContentPanel.SuspendLayout();
+            this.ContainerPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuBar
@@ -472,19 +472,19 @@
             this.statusBar_LabelLinhaColuna.Size = new System.Drawing.Size(80, 17);
             this.statusBar_LabelLinhaColuna.Text = "Linha, Coluna";
             // 
-            // toolStripContainer1
+            // ContainerPrincipal
             // 
             // 
-            // toolStripContainer1.ContentPanel
+            // ContainerPrincipal.ContentPanel
             // 
-            this.toolStripContainer1.ContentPanel.Controls.Add(this.txtConteudo);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(784, 415);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 24);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(784, 415);
-            this.toolStripContainer1.TabIndex = 3;
-            this.toolStripContainer1.Text = "toolStripContainer1";
+            this.ContainerPrincipal.ContentPanel.Controls.Add(this.txtConteudo);
+            this.ContainerPrincipal.ContentPanel.Size = new System.Drawing.Size(784, 415);
+            this.ContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ContainerPrincipal.Location = new System.Drawing.Point(0, 24);
+            this.ContainerPrincipal.Name = "ContainerPrincipal";
+            this.ContainerPrincipal.Size = new System.Drawing.Size(784, 415);
+            this.ContainerPrincipal.TabIndex = 3;
+            this.ContainerPrincipal.Text = "toolStripContainer1";
             // 
             // txtConteudo
             // 
@@ -494,13 +494,15 @@
             this.txtConteudo.Size = new System.Drawing.Size(784, 415);
             this.txtConteudo.TabIndex = 0;
             this.txtConteudo.Text = "";
+            this.txtConteudo.SelectionChanged += new System.EventHandler(this.txtConteudo_SelectionChanged);
+            this.txtConteudo.TextChanged += new System.EventHandler(this.txtConteudo_TextChanged);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.toolStripContainer1);
+            this.Controls.Add(this.ContainerPrincipal);
             this.Controls.Add(this.statusBar);
             this.Controls.Add(this.menuBar);
             this.MainMenuStrip = this.menuBar;
@@ -512,9 +514,9 @@
             this.menuBar.PerformLayout();
             this.statusBar.ResumeLayout(false);
             this.statusBar.PerformLayout();
-            this.toolStripContainer1.ContentPanel.ResumeLayout(false);
-            this.toolStripContainer1.ResumeLayout(false);
-            this.toolStripContainer1.PerformLayout();
+            this.ContainerPrincipal.ContentPanel.ResumeLayout(false);
+            this.ContainerPrincipal.ResumeLayout(false);
+            this.ContainerPrincipal.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -569,12 +571,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripMenuItem mAjuda_Sobre;
         private System.Windows.Forms.StatusStrip statusBar;
-        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripContainer ContainerPrincipal;
         private System.Windows.Forms.RichTextBox txtConteudo;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelLinhaColuna;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelZoom;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelEncoding;
-
     }
 }
 
