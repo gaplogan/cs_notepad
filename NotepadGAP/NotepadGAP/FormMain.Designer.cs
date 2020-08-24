@@ -153,7 +153,6 @@
             this.mArquivo_Recentes.Name = "mArquivo_Recentes";
             this.mArquivo_Recentes.Size = new System.Drawing.Size(180, 22);
             this.mArquivo_Recentes.Text = "Recentes";
-            this.mArquivo_Recentes.Click += new System.EventHandler(this.mArquivo_Recentes_Click);
             // 
             // toolStripSeparator2
             // 
@@ -478,7 +477,7 @@
             // ContainerPrincipal.ContentPanel
             // 
             this.ContainerPrincipal.ContentPanel.Controls.Add(this.txtConteudo);
-            this.ContainerPrincipal.ContentPanel.Size = new System.Drawing.Size(784, 415);
+            this.ContainerPrincipal.ContentPanel.Size = new System.Drawing.Size(784, 390);
             this.ContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContainerPrincipal.Location = new System.Drawing.Point(0, 24);
             this.ContainerPrincipal.Name = "ContainerPrincipal";
@@ -491,7 +490,7 @@
             this.txtConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtConteudo.Location = new System.Drawing.Point(0, 0);
             this.txtConteudo.Name = "txtConteudo";
-            this.txtConteudo.Size = new System.Drawing.Size(784, 415);
+            this.txtConteudo.Size = new System.Drawing.Size(784, 390);
             this.txtConteudo.TabIndex = 0;
             this.txtConteudo.Text = "";
             this.txtConteudo.SelectionChanged += new System.EventHandler(this.txtConteudo_SelectionChanged);
