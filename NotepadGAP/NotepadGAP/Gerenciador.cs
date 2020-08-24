@@ -26,7 +26,7 @@ namespace NotepadGAP
         public static bool FileSaved { get; set; } = true;
 
         #region Histórico de arquivos recentes
-        // Atualizar o historico de arquivos recentes limitando a 10 arquivos
+        // Adicionar ao historico de arquivos recentes limitando a 10 arquivos
         public static void AddRecente(string filePath)
         {
             if (_recentes.Contains(filePath))
@@ -40,6 +40,12 @@ namespace NotepadGAP
             {
                 _recentes.RemoveRange(10, _recentes.Count - 10);
             }
+        }
+
+        // Remover do histórico de recentes, caso o arquivo não exista mais
+        public static void DelRecente(string filePath)
+        {
+            _recentes.RemoveAll(x => x.ToLower() == filePath.ToLower());
         }
 
         // Retornar o histórico atualizado de arquivos recentes

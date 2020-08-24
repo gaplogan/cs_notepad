@@ -242,94 +242,94 @@
             // mEditar_Recortar
             // 
             this.mEditar_Recortar.Name = "mEditar_Recortar";
-            this.mEditar_Recortar.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Recortar.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Recortar.Text = "Recortar";
             this.mEditar_Recortar.Click += new System.EventHandler(this.mEditar_Recortar_Click);
             // 
             // mEditar_Copiar
             // 
             this.mEditar_Copiar.Name = "mEditar_Copiar";
-            this.mEditar_Copiar.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Copiar.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Copiar.Text = "Copiar";
             this.mEditar_Copiar.Click += new System.EventHandler(this.mEditar_Copiar_Click);
             // 
             // mEditar_Colar
             // 
             this.mEditar_Colar.Name = "mEditar_Colar";
-            this.mEditar_Colar.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Colar.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Colar.Text = "Colar";
             this.mEditar_Colar.Click += new System.EventHandler(this.mEditar_Colar_Click);
             // 
             // mEditar_Excluir
             // 
             this.mEditar_Excluir.Name = "mEditar_Excluir";
-            this.mEditar_Excluir.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Excluir.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Excluir.Text = "Excluir";
             this.mEditar_Excluir.Click += new System.EventHandler(this.mEditar_Excluir_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(177, 6);
             // 
             // mEditar_BuscarNaWeb
             // 
             this.mEditar_BuscarNaWeb.Name = "mEditar_BuscarNaWeb";
-            this.mEditar_BuscarNaWeb.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_BuscarNaWeb.Size = new System.Drawing.Size(180, 22);
             this.mEditar_BuscarNaWeb.Text = "Buscar na Web";
             this.mEditar_BuscarNaWeb.Click += new System.EventHandler(this.mEditar_BuscarNaWeb_Click);
             // 
             // mEditar_Localizar
             // 
             this.mEditar_Localizar.Name = "mEditar_Localizar";
-            this.mEditar_Localizar.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Localizar.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Localizar.Text = "Localizar";
             this.mEditar_Localizar.Click += new System.EventHandler(this.mEditar_Localizar_Click);
             // 
             // mEditar_LocalizarProxima
             // 
             this.mEditar_LocalizarProxima.Name = "mEditar_LocalizarProxima";
-            this.mEditar_LocalizarProxima.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_LocalizarProxima.Size = new System.Drawing.Size(180, 22);
             this.mEditar_LocalizarProxima.Text = "Localizar Próxima";
             this.mEditar_LocalizarProxima.Click += new System.EventHandler(this.mEditar_LocalizarProxima_Click);
             // 
             // mEditar_LocalizarAnterior
             // 
             this.mEditar_LocalizarAnterior.Name = "mEditar_LocalizarAnterior";
-            this.mEditar_LocalizarAnterior.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_LocalizarAnterior.Size = new System.Drawing.Size(180, 22);
             this.mEditar_LocalizarAnterior.Text = "Localizar Anterior";
             this.mEditar_LocalizarAnterior.Click += new System.EventHandler(this.mEditar_LocalizarAnterior_Click);
             // 
             // mEditar_Substituir
             // 
             this.mEditar_Substituir.Name = "mEditar_Substituir";
-            this.mEditar_Substituir.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_Substituir.Size = new System.Drawing.Size(180, 22);
             this.mEditar_Substituir.Text = "Substituir";
             this.mEditar_Substituir.Click += new System.EventHandler(this.mEditar_Substituir_Click);
             // 
             // mEditar_IrPara
             // 
             this.mEditar_IrPara.Name = "mEditar_IrPara";
-            this.mEditar_IrPara.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_IrPara.Size = new System.Drawing.Size(180, 22);
             this.mEditar_IrPara.Text = "Ir Para...";
             this.mEditar_IrPara.Click += new System.EventHandler(this.mEditar_IrPara_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(177, 6);
             // 
             // mEditar_SelecionarTudo
             // 
             this.mEditar_SelecionarTudo.Name = "mEditar_SelecionarTudo";
-            this.mEditar_SelecionarTudo.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_SelecionarTudo.Size = new System.Drawing.Size(180, 22);
             this.mEditar_SelecionarTudo.Text = "Selecionar Tudo";
             this.mEditar_SelecionarTudo.Click += new System.EventHandler(this.mEditar_SelecionarTudo_Click);
             // 
             // mEditar_DataEHora
             // 
             this.mEditar_DataEHora.Name = "mEditar_DataEHora";
-            this.mEditar_DataEHora.Size = new System.Drawing.Size(167, 22);
+            this.mEditar_DataEHora.Size = new System.Drawing.Size(180, 22);
             this.mEditar_DataEHora.Text = "Data e Hora";
             this.mEditar_DataEHora.Click += new System.EventHandler(this.mEditar_DataEHora_Click);
             // 
@@ -344,6 +344,7 @@
             // 
             // mFormatar_QuebraAutomaticaDeLinha
             // 
+            this.mFormatar_QuebraAutomaticaDeLinha.CheckOnClick = true;
             this.mFormatar_QuebraAutomaticaDeLinha.Name = "mFormatar_QuebraAutomaticaDeLinha";
             this.mFormatar_QuebraAutomaticaDeLinha.Size = new System.Drawing.Size(224, 22);
             this.mFormatar_QuebraAutomaticaDeLinha.Text = "Quebra automática de Linha";
@@ -398,8 +399,9 @@
             // 
             // mExibir_BarraDeStatus
             // 
+            this.mExibir_BarraDeStatus.CheckOnClick = true;
             this.mExibir_BarraDeStatus.Name = "mExibir_BarraDeStatus";
-            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(152, 22);
+            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(180, 22);
             this.mExibir_BarraDeStatus.Text = "Barra de Status";
             this.mExibir_BarraDeStatus.Click += new System.EventHandler(this.mExibir_BarraDeStatus_Click);
             // 
@@ -488,6 +490,7 @@
             // txtConteudo
             // 
             this.txtConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtConteudo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConteudo.Location = new System.Drawing.Point(0, 0);
             this.txtConteudo.Name = "txtConteudo";
             this.txtConteudo.Size = new System.Drawing.Size(784, 390);
