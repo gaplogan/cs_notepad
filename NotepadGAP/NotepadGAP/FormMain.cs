@@ -200,17 +200,30 @@ namespace NotepadGAP
 
         private void mArquivo_ConfigurarPagina_Click(object sender, EventArgs e)
         {
+            DialogResult result = pageSetupDialog.ShowDialog();
 
+            if (result != DialogResult.Cancel && result != DialogResult.Abort)
+            {                
+                printDocument.PrinterSettings = pageSetupDialog.PrinterSettings;
+                printDocument.DefaultPageSettings = pageSetupDialog.PageSettings;
+            }            
         }
 
         private void mArquivo_VisualizarImpressao_Click(object sender, EventArgs e)
         {
+            DialogResult result = printDialog.ShowDialog();
 
+            if (result != DialogResult.Cancel && result != DialogResult.Abort)
+            {
+                printDocument.PrinterSettings = printDialog.PrinterSettings;
+                printDocument.Print();
+            }
         }
 
         private void mArquivo_Imprimir_Click(object sender, EventArgs e)
         {
-
+            printDocument.PrinterSettings = printDialog.PrinterSettings;
+            printDocument.Print();
         }
 
         private void mArquivo_Fechar_Click(object sender, EventArgs e)
@@ -227,24 +240,33 @@ namespace NotepadGAP
         #endregion
 
         #region Menu Editar
+        private void mEditar_Desfazer_Click(object sender, EventArgs e)
+        {
+            txtConteudo.Undo();
+        }
+
+        private void mEditar_Refazer_Click(object sender, EventArgs e)
+        {
+            txtConteudo.Redo();
+        }
         private void mEditar_Recortar_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.Cut();
         }
 
         private void mEditar_Copiar_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.Copy();
         }
 
         private void mEditar_Colar_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.Paste();
         }
 
         private void mEditar_Excluir_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.Text = txtConteudo.Text.Remove(txtConteudo.SelectionStart, txtConteudo.SelectedText.Length);
         }
 
         private void mEditar_BuscarNaWeb_Click(object sender, EventArgs e)
@@ -491,6 +513,13 @@ namespace NotepadGAP
             }
             catch (Exception) { throw; }
             writer.Close();
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            float x = printDocument.PrinterSettings.DefaultPageSettings.PrintableArea.X;
+            float y = printDocument.PrinterSettings.DefaultPageSettings.PrintableArea.Y;
+            e.Graphics.DrawString(txtConteudo.Rtf, txtConteudo.Font, new SolidBrush(txtConteudo.ForeColor), x, y);
         }
     }
 }

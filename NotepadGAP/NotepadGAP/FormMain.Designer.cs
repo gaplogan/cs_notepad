@@ -80,6 +80,12 @@
             this.statusBar_LabelLinhaColuna = new System.Windows.Forms.ToolStripStatusLabel();
             this.ContainerPrincipal = new System.Windows.Forms.ToolStripContainer();
             this.txtConteudo = new System.Windows.Forms.RichTextBox();
+            this.printDocument = new System.Drawing.Printing.PrintDocument();
+            this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
+            this.printDialog = new System.Windows.Forms.PrintDialog();
+            this.mEditar_Desfazer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mEditar_Refazer = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.menuBar.SuspendLayout();
             this.statusBar.SuspendLayout();
             this.ContainerPrincipal.ContentPanel.SuspendLayout();
@@ -221,6 +227,9 @@
             // menuEditar
             // 
             this.menuEditar.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mEditar_Desfazer,
+            this.mEditar_Refazer,
+            this.toolStripSeparator8,
             this.mEditar_Recortar,
             this.mEditar_Copiar,
             this.mEditar_Colar,
@@ -373,7 +382,7 @@
             this.mExibir_Zoom_Reduzir,
             this.mExibir_Zoom_RestaurarZoom});
             this.mExibir_Zoom.Name = "mExibir_Zoom";
-            this.mExibir_Zoom.Size = new System.Drawing.Size(180, 22);
+            this.mExibir_Zoom.Size = new System.Drawing.Size(152, 22);
             this.mExibir_Zoom.Text = "Zoom";
             // 
             // mExibir_Zoom_Ampliar
@@ -409,7 +418,7 @@
             this.mExibir_BarraDeStatus.CheckOnClick = true;
             this.mExibir_BarraDeStatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mExibir_BarraDeStatus.Name = "mExibir_BarraDeStatus";
-            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(180, 22);
+            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(152, 22);
             this.mExibir_BarraDeStatus.Text = "Barra de Status";
             this.mExibir_BarraDeStatus.Click += new System.EventHandler(this.mExibir_BarraDeStatus_Click);
             // 
@@ -507,6 +516,38 @@
             this.txtConteudo.SelectionChanged += new System.EventHandler(this.txtConteudo_SelectionChanged);
             this.txtConteudo.TextChanged += new System.EventHandler(this.txtConteudo_TextChanged);
             // 
+            // printDocument
+            // 
+            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
+            // 
+            // pageSetupDialog
+            // 
+            this.pageSetupDialog.Document = this.printDocument;
+            // 
+            // printDialog
+            // 
+            this.printDialog.Document = this.printDocument;
+            this.printDialog.UseEXDialog = true;
+            // 
+            // mEditar_Desfazer
+            // 
+            this.mEditar_Desfazer.Name = "mEditar_Desfazer";
+            this.mEditar_Desfazer.Size = new System.Drawing.Size(180, 22);
+            this.mEditar_Desfazer.Text = "Desfazer";
+            this.mEditar_Desfazer.Click += new System.EventHandler(this.mEditar_Desfazer_Click);
+            // 
+            // mEditar_Refazer
+            // 
+            this.mEditar_Refazer.Name = "mEditar_Refazer";
+            this.mEditar_Refazer.Size = new System.Drawing.Size(180, 22);
+            this.mEditar_Refazer.Text = "Refazer";
+            this.mEditar_Refazer.Click += new System.EventHandler(this.mEditar_Refazer_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(177, 6);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -586,6 +627,12 @@
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelLinhaColuna;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelZoom;
         private System.Windows.Forms.ToolStripStatusLabel statusBar_LabelEncoding;
+        private System.Drawing.Printing.PrintDocument printDocument;
+        private System.Windows.Forms.PageSetupDialog pageSetupDialog;
+        private System.Windows.Forms.PrintDialog printDialog;
+        private System.Windows.Forms.ToolStripMenuItem mEditar_Desfazer;
+        private System.Windows.Forms.ToolStripMenuItem mEditar_Refazer;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
     }
 }
 
