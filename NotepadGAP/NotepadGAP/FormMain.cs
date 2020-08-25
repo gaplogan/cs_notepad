@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace NotepadGAP
             AtualizarHistoricoRecentes();
             txtConteudo.WordWrap = mFormatar_QuebraAutomaticaDeLinha.Checked;
             statusBar.Visible = mExibir_BarraDeStatus.Checked;
+            statusBar_LabelZoom.Text = txtConteudo.ZoomFactor * 100 + "%";
         }
 
         private void txtConteudo_TextChanged(object sender, EventArgs e)
@@ -59,6 +61,7 @@ namespace NotepadGAP
             Gerenciador.FolderPath = Gerenciador.DefaultFolderPath;
 
             txtConteudo.Text = "";
+            txtConteudo.Rtf = "";
             Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
             Gerenciador.FileSaved = true;
         }
@@ -94,12 +97,31 @@ namespace NotepadGAP
                     Gerenciador.FileName = (f.Name.Contains('.')) ? f.Name.Substring(0, f.Name.LastIndexOf('.')) : f.Name;
                     Gerenciador.FileExt = f.Extension;
                     Gerenciador.FolderPath = f.DirectoryName + "\\";
-
+                                        
                     StreamReader stream = new StreamReader(f.FullName, true);
                     Encoding encoding = stream.CurrentEncoding;
-                    txtConteudo.Text = stream.ReadToEnd();
-                    statusBar_LabelEncoding.Text = encoding.EncodingName;
-                    statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
+                    try
+                    {
+                        switch (Gerenciador.FileExt)
+                        {
+                            default:
+                                txtConteudo.Text = stream.ReadToEnd();
+                                break;
+                            case ".txt":
+                                txtConteudo.Text = stream.ReadToEnd();
+                                break;
+                            case ".rtf":
+                                txtConteudo.Rtf = stream.ReadToEnd();
+                                break;
+                        }
+
+                        statusBar_LabelEncoding.Text = encoding.EncodingName;
+                        statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Formato de arquivo não suportado.");
+                    }
                     stream.Close();
 
                     Gerenciador.AddRecente(f.FullName);
@@ -162,7 +184,7 @@ namespace NotepadGAP
                     Encoding encoding = stream.CurrentEncoding;
                     statusBar_LabelEncoding.Text = encoding.EncodingName;
                     statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
-                    stream.Close();
+                    stream.Close();                    
 
                     Gerenciador.AddRecente(f.FullName);
                     AtualizarHistoricoRecentes();
@@ -300,7 +322,19 @@ namespace NotepadGAP
 
         private void mFormatar_Fonte_Click(object sender, EventArgs e)
         {
-            
+            FontDialog dialog = new FontDialog();
+            dialog.Font = txtConteudo.Font;
+            dialog.ShowColor = true;
+            dialog.AllowScriptChange = true;
+            dialog.Color = txtConteudo.ForeColor;
+
+            DialogResult result = dialog.ShowDialog();
+
+            if (result != DialogResult.Cancel && result != DialogResult.Abort)
+            {
+                txtConteudo.Font = dialog.Font;
+                txtConteudo.ForeColor = dialog.Color;
+            }
         }
 
         #endregion
@@ -308,17 +342,22 @@ namespace NotepadGAP
         #region Menu Exibir
         private void mExibir_Zoom_Ampliar_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.ZoomFactor += 0.1f;
+            if (txtConteudo.ZoomFactor > 10f) txtConteudo.ZoomFactor = 10f;
+            statusBar_LabelZoom.Text = Math.Round(txtConteudo.ZoomFactor * 100) + "%";
         }
 
         private void mExibir_Zoom_Reduzir_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.ZoomFactor -= 0.1f;
+            if (txtConteudo.ZoomFactor < 0.2f) txtConteudo.ZoomFactor = 0.2f;
+            statusBar_LabelZoom.Text = Math.Round(txtConteudo.ZoomFactor * 100) + "%";
         }
 
         private void mExibir_Zoom_RestaurarZoom_Click(object sender, EventArgs e)
         {
-
+            txtConteudo.ZoomFactor = 1;
+            statusBar_LabelZoom.Text = Math.Round(txtConteudo.ZoomFactor * 100) + "%";
         }
 
         private void mExibir_BarraDeStatus_Click(object sender, EventArgs e)
@@ -331,17 +370,17 @@ namespace NotepadGAP
         #region Menu Ajuda
         private void mAjuda_ExibirAjuda_Click(object sender, EventArgs e)
         {
-
+            Process.Start("https://www.facebook.com/TechCursoseTutoriais");
         }
 
         private void mAjuda_EnviarComentarios_Click(object sender, EventArgs e)
         {
-
+            new FormEnviarComentarios().ShowDialog();
         }
 
         private void mAjuda_Sobre_Click(object sender, EventArgs e)
         {
-
+            new FormSobre().ShowDialog();
         }
         #endregion
 
@@ -386,9 +425,28 @@ namespace NotepadGAP
 
                             StreamReader stream = new StreamReader(f.FullName, true);
                             Encoding encoding = stream.CurrentEncoding;
-                            txtConteudo.Text = stream.ReadToEnd();
-                            statusBar_LabelEncoding.Text = encoding.EncodingName;
-                            statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
+                            try
+                            {
+                                switch (Gerenciador.FileExt)
+                                {
+                                    default:
+
+                                        break;
+                                    case ".txt":
+                                        txtConteudo.Text = stream.ReadToEnd();
+                                        break;
+                                    case ".rtf":
+                                        txtConteudo.Rtf = stream.ReadToEnd();
+                                        break;
+                                }
+                                
+                                statusBar_LabelEncoding.Text = encoding.EncodingName;
+                                statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
+                            }
+                            catch (Exception ex)
+                            {
+                                MessageBox.Show("Formato de arquivo não suportado.");
+                            }                            
                             stream.Close();
 
                             Gerenciador.AddRecente(f.FullName);
@@ -415,7 +473,19 @@ namespace NotepadGAP
             StreamWriter writer = new StreamWriter(path, false);
             try
             {
-                writer.Write(txtConteudo.Text);
+                string ext = (path.Contains('.'))? path.Substring(path.LastIndexOf('.')): "";
+                switch (Gerenciador.FileExt)
+                {
+                    default:
+                        writer.Write(txtConteudo.Text);
+                        break;
+                    case ".txt":
+                        writer.Write(txtConteudo.Text);
+                        break;
+                    case ".rtf":
+                        writer.Write(txtConteudo.Rtf);
+                        break;
+                }
                 Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
                 Gerenciador.FileSaved = true;
             }

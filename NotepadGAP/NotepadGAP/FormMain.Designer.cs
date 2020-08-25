@@ -373,33 +373,41 @@
             this.mExibir_Zoom_Reduzir,
             this.mExibir_Zoom_RestaurarZoom});
             this.mExibir_Zoom.Name = "mExibir_Zoom";
-            this.mExibir_Zoom.Size = new System.Drawing.Size(152, 22);
+            this.mExibir_Zoom.Size = new System.Drawing.Size(180, 22);
             this.mExibir_Zoom.Text = "Zoom";
             // 
             // mExibir_Zoom_Ampliar
             // 
             this.mExibir_Zoom_Ampliar.Name = "mExibir_Zoom_Ampliar";
-            this.mExibir_Zoom_Ampliar.Size = new System.Drawing.Size(158, 22);
+            this.mExibir_Zoom_Ampliar.ShortcutKeyDisplayString = "Ctrl + \'+\'";
+            this.mExibir_Zoom_Ampliar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
+            this.mExibir_Zoom_Ampliar.Size = new System.Drawing.Size(210, 22);
             this.mExibir_Zoom_Ampliar.Text = "Ampliar";
             this.mExibir_Zoom_Ampliar.Click += new System.EventHandler(this.mExibir_Zoom_Ampliar_Click);
             // 
             // mExibir_Zoom_Reduzir
             // 
             this.mExibir_Zoom_Reduzir.Name = "mExibir_Zoom_Reduzir";
-            this.mExibir_Zoom_Reduzir.Size = new System.Drawing.Size(158, 22);
+            this.mExibir_Zoom_Reduzir.ShortcutKeyDisplayString = "Ctrl + \'-\'";
+            this.mExibir_Zoom_Reduzir.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
+            this.mExibir_Zoom_Reduzir.Size = new System.Drawing.Size(210, 22);
             this.mExibir_Zoom_Reduzir.Text = "Reduzir";
             this.mExibir_Zoom_Reduzir.Click += new System.EventHandler(this.mExibir_Zoom_Reduzir_Click);
             // 
             // mExibir_Zoom_RestaurarZoom
             // 
             this.mExibir_Zoom_RestaurarZoom.Name = "mExibir_Zoom_RestaurarZoom";
-            this.mExibir_Zoom_RestaurarZoom.Size = new System.Drawing.Size(158, 22);
+            this.mExibir_Zoom_RestaurarZoom.ShortcutKeyDisplayString = "Ctrl + \'0\'";
+            this.mExibir_Zoom_RestaurarZoom.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D0)));
+            this.mExibir_Zoom_RestaurarZoom.Size = new System.Drawing.Size(210, 22);
             this.mExibir_Zoom_RestaurarZoom.Text = "Restaurar Zoom";
             this.mExibir_Zoom_RestaurarZoom.Click += new System.EventHandler(this.mExibir_Zoom_RestaurarZoom_Click);
             // 
             // mExibir_BarraDeStatus
             // 
+            this.mExibir_BarraDeStatus.Checked = true;
             this.mExibir_BarraDeStatus.CheckOnClick = true;
+            this.mExibir_BarraDeStatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mExibir_BarraDeStatus.Name = "mExibir_BarraDeStatus";
             this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(180, 22);
             this.mExibir_BarraDeStatus.Text = "Barra de Status";
