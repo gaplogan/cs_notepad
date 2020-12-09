@@ -81,15 +81,15 @@
             this.statusBar_LabelLinhaColuna = new System.Windows.Forms.ToolStripStatusLabel();
             this.ContainerPrincipal = new System.Windows.Forms.ToolStripContainer();
             this.txtConteudo = new System.Windows.Forms.RichTextBox();
+            this.pesqBar = new System.Windows.Forms.ToolStrip();
+            this.txtLocalizar = new System.Windows.Forms.ToolStripTextBox();
+            this.btnLocalizarProxima = new System.Windows.Forms.ToolStripButton();
+            this.pesqBar_btnFechar = new System.Windows.Forms.ToolStripButton();
             this.substituirBar = new System.Windows.Forms.ToolStrip();
             this.txtSubstituirDe = new System.Windows.Forms.ToolStripTextBox();
             this.txtSubstituirPor = new System.Windows.Forms.ToolStripTextBox();
             this.btnSubstituir = new System.Windows.Forms.ToolStripButton();
             this.substituirBar_btnFechar = new System.Windows.Forms.ToolStripButton();
-            this.pesqBar = new System.Windows.Forms.ToolStrip();
-            this.txtLocalizar = new System.Windows.Forms.ToolStripTextBox();
-            this.btnLocalizarProxima = new System.Windows.Forms.ToolStripButton();
-            this.pesqBar_btnFechar = new System.Windows.Forms.ToolStripButton();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.pageSetupDialog = new System.Windows.Forms.PageSetupDialog();
             this.printDialog = new System.Windows.Forms.PrintDialog();
@@ -98,8 +98,8 @@
             this.ContainerPrincipal.ContentPanel.SuspendLayout();
             this.ContainerPrincipal.TopToolStripPanel.SuspendLayout();
             this.ContainerPrincipal.SuspendLayout();
-            this.substituirBar.SuspendLayout();
             this.pesqBar.SuspendLayout();
+            this.substituirBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuBar
@@ -387,7 +387,7 @@
             this.mExibir_Zoom_Reduzir,
             this.mExibir_Zoom_RestaurarZoom});
             this.mExibir_Zoom.Name = "mExibir_Zoom";
-            this.mExibir_Zoom.Size = new System.Drawing.Size(180, 22);
+            this.mExibir_Zoom.Size = new System.Drawing.Size(152, 22);
             this.mExibir_Zoom.Text = "Zoom";
             // 
             // mExibir_Zoom_Ampliar
@@ -423,7 +423,7 @@
             this.mExibir_BarraDeStatus.CheckOnClick = true;
             this.mExibir_BarraDeStatus.CheckState = System.Windows.Forms.CheckState.Checked;
             this.mExibir_BarraDeStatus.Name = "mExibir_BarraDeStatus";
-            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(180, 22);
+            this.mExibir_BarraDeStatus.Size = new System.Drawing.Size(152, 22);
             this.mExibir_BarraDeStatus.Text = "Barra de Status";
             this.mExibir_BarraDeStatus.Click += new System.EventHandler(this.mExibir_BarraDeStatus_Click);
             // 
@@ -441,26 +441,26 @@
             // mAjuda_ExibirAjuda
             // 
             this.mAjuda_ExibirAjuda.Name = "mAjuda_ExibirAjuda";
-            this.mAjuda_ExibirAjuda.Size = new System.Drawing.Size(180, 22);
+            this.mAjuda_ExibirAjuda.Size = new System.Drawing.Size(177, 22);
             this.mAjuda_ExibirAjuda.Text = "Exibir Ajuda";
             this.mAjuda_ExibirAjuda.Click += new System.EventHandler(this.mAjuda_ExibirAjuda_Click);
             // 
             // mAjuda_EnviarComentarios
             // 
             this.mAjuda_EnviarComentarios.Name = "mAjuda_EnviarComentarios";
-            this.mAjuda_EnviarComentarios.Size = new System.Drawing.Size(180, 22);
+            this.mAjuda_EnviarComentarios.Size = new System.Drawing.Size(177, 22);
             this.mAjuda_EnviarComentarios.Text = "Enviar Comentários";
             this.mAjuda_EnviarComentarios.Click += new System.EventHandler(this.mAjuda_EnviarComentarios_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(177, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(174, 6);
             // 
             // mAjuda_Sobre
             // 
             this.mAjuda_Sobre.Name = "mAjuda_Sobre";
-            this.mAjuda_Sobre.Size = new System.Drawing.Size(180, 22);
+            this.mAjuda_Sobre.Size = new System.Drawing.Size(177, 22);
             this.mAjuda_Sobre.Text = "Sobre";
             this.mAjuda_Sobre.Click += new System.EventHandler(this.mAjuda_Sobre_Click);
             // 
@@ -501,7 +501,7 @@
             // ContainerPrincipal.ContentPanel
             // 
             this.ContainerPrincipal.ContentPanel.Controls.Add(this.txtConteudo);
-            this.ContainerPrincipal.ContentPanel.Size = new System.Drawing.Size(784, 415);
+            this.ContainerPrincipal.ContentPanel.Size = new System.Drawing.Size(784, 390);
             this.ContainerPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContainerPrincipal.Location = new System.Drawing.Point(0, 24);
             this.ContainerPrincipal.Name = "ContainerPrincipal";
@@ -511,20 +511,62 @@
             // 
             // ContainerPrincipal.TopToolStripPanel
             // 
-            this.ContainerPrincipal.TopToolStripPanel.Controls.Add(this.pesqBar);
             this.ContainerPrincipal.TopToolStripPanel.Controls.Add(this.substituirBar);
+            this.ContainerPrincipal.TopToolStripPanel.Controls.Add(this.pesqBar);
             // 
             // txtConteudo
             // 
+            this.txtConteudo.AcceptsTab = true;
             this.txtConteudo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtConteudo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtConteudo.Location = new System.Drawing.Point(0, 0);
             this.txtConteudo.Name = "txtConteudo";
-            this.txtConteudo.Size = new System.Drawing.Size(784, 415);
+            this.txtConteudo.Size = new System.Drawing.Size(784, 390);
             this.txtConteudo.TabIndex = 0;
             this.txtConteudo.Text = "";
             this.txtConteudo.SelectionChanged += new System.EventHandler(this.txtConteudo_SelectionChanged);
             this.txtConteudo.TextChanged += new System.EventHandler(this.txtConteudo_TextChanged);
+            // 
+            // pesqBar
+            // 
+            this.pesqBar.Dock = System.Windows.Forms.DockStyle.None;
+            this.pesqBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.txtLocalizar,
+            this.btnLocalizarProxima,
+            this.pesqBar_btnFechar});
+            this.pesqBar.Location = new System.Drawing.Point(3, 0);
+            this.pesqBar.Name = "pesqBar";
+            this.pesqBar.Size = new System.Drawing.Size(292, 25);
+            this.pesqBar.TabIndex = 0;
+            this.pesqBar.Visible = false;
+            // 
+            // txtLocalizar
+            // 
+            this.txtLocalizar.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtLocalizar.Name = "txtLocalizar";
+            this.txtLocalizar.Size = new System.Drawing.Size(200, 25);
+            // 
+            // btnLocalizarProxima
+            // 
+            this.btnLocalizarProxima.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.btnLocalizarProxima.Image = ((System.Drawing.Image)(resources.GetObject("btnLocalizarProxima.Image")));
+            this.btnLocalizarProxima.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnLocalizarProxima.Name = "btnLocalizarProxima";
+            this.btnLocalizarProxima.Size = new System.Drawing.Size(55, 22);
+            this.btnLocalizarProxima.Text = "Próxima";
+            this.btnLocalizarProxima.Click += new System.EventHandler(this.btnLocalizarProxima_Click);
+            // 
+            // pesqBar_btnFechar
+            // 
+            this.pesqBar_btnFechar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.pesqBar_btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pesqBar_btnFechar.Image = ((System.Drawing.Image)(resources.GetObject("pesqBar_btnFechar.Image")));
+            this.pesqBar_btnFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.pesqBar_btnFechar.Name = "pesqBar_btnFechar";
+            this.pesqBar_btnFechar.Size = new System.Drawing.Size(23, 22);
+            this.pesqBar_btnFechar.Text = "x";
+            this.pesqBar_btnFechar.ToolTipText = "Fechar Localizar";
+            this.pesqBar_btnFechar.Click += new System.EventHandler(this.pesqBar_btnFechar_Click);
             // 
             // substituirBar
             // 
@@ -574,47 +616,6 @@
             this.substituirBar_btnFechar.ToolTipText = "Fechar Localizar";
             this.substituirBar_btnFechar.Click += new System.EventHandler(this.substituirBar_btnFechar_Click);
             // 
-            // pesqBar
-            // 
-            this.pesqBar.Dock = System.Windows.Forms.DockStyle.None;
-            this.pesqBar.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.txtLocalizar,
-            this.btnLocalizarProxima,
-            this.pesqBar_btnFechar});
-            this.pesqBar.Location = new System.Drawing.Point(3, 0);
-            this.pesqBar.Name = "pesqBar";
-            this.pesqBar.Size = new System.Drawing.Size(292, 25);
-            this.pesqBar.TabIndex = 0;
-            this.pesqBar.Visible = false;
-            // 
-            // txtLocalizar
-            // 
-            this.txtLocalizar.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtLocalizar.Name = "txtLocalizar";
-            this.txtLocalizar.Size = new System.Drawing.Size(200, 25);
-            // 
-            // btnLocalizarProxima
-            // 
-            this.btnLocalizarProxima.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.btnLocalizarProxima.Image = ((System.Drawing.Image)(resources.GetObject("btnLocalizarProxima.Image")));
-            this.btnLocalizarProxima.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnLocalizarProxima.Name = "btnLocalizarProxima";
-            this.btnLocalizarProxima.Size = new System.Drawing.Size(55, 22);
-            this.btnLocalizarProxima.Text = "Próxima";
-            this.btnLocalizarProxima.Click += new System.EventHandler(this.btnLocalizarProxima_Click);
-            // 
-            // pesqBar_btnFechar
-            // 
-            this.pesqBar_btnFechar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.pesqBar_btnFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pesqBar_btnFechar.Image = ((System.Drawing.Image)(resources.GetObject("pesqBar_btnFechar.Image")));
-            this.pesqBar_btnFechar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pesqBar_btnFechar.Name = "pesqBar_btnFechar";
-            this.pesqBar_btnFechar.Size = new System.Drawing.Size(23, 22);
-            this.pesqBar_btnFechar.Text = "x";
-            this.pesqBar_btnFechar.ToolTipText = "Fechar Localizar";
-            this.pesqBar_btnFechar.Click += new System.EventHandler(this.pesqBar_btnFechar_Click);
-            // 
             // printDocument
             // 
             this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
@@ -650,10 +651,10 @@
             this.ContainerPrincipal.TopToolStripPanel.PerformLayout();
             this.ContainerPrincipal.ResumeLayout(false);
             this.ContainerPrincipal.PerformLayout();
-            this.substituirBar.ResumeLayout(false);
-            this.substituirBar.PerformLayout();
             this.pesqBar.ResumeLayout(false);
             this.pesqBar.PerformLayout();
+            this.substituirBar.ResumeLayout(false);
+            this.substituirBar.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

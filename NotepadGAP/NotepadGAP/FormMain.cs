@@ -16,9 +16,6 @@ namespace NotepadGAP
 {
     public partial class FormMain : Form
     {
-        Font editorFont;
-        Color editorForeColor;
-
         public FormMain()
         {
             InitializeComponent();
@@ -33,8 +30,6 @@ namespace NotepadGAP
             statusBar.Visible = mExibir_BarraDeStatus.Checked;
             statusBar_LabelZoom.Text = txtConteudo.ZoomFactor * 100 + "%";
             txtConteudo_SelectionChanged(sender, e);
-            editorFont = txtConteudo.Font;
-            editorForeColor = txtConteudo.ForeColor;
         }
 
         private void txtConteudo_TextChanged(object sender, EventArgs e)
@@ -108,7 +103,7 @@ namespace NotepadGAP
 
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Title = "Abrir...";
-            dialog.Filter = "texto|*.txt|próprio|*.npgap|todos|*.*";
+            dialog.Filter = "rich text format| *.rtf|texto|*.txt|próprio|*.npgap|todos|*.*";
 
             DialogResult result = dialog.ShowDialog();
             if (result != DialogResult.Cancel && result != DialogResult.Abort)
@@ -133,16 +128,16 @@ namespace NotepadGAP
                                 txtConteudo.Text = stream.ReadToEnd();
                                 break;
                             case ".rtf":
-                                txtConteudo.Rtf = stream.ReadToEnd();
+                                txtConteudo.Text = stream.ReadToEnd();
                                 break;
                         }
 
                         statusBar_LabelEncoding.Text = encoding.EncodingName;
                         statusBar_LabelLinhaColuna.Text = txtConteudo.SelectionStart.ToString();
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Formato de arquivo não suportado.");
+                        MessageBox.Show("Formato de arquivo não suportado.\n" + ex.Message);
                     }
                     stream.Close();
 
@@ -175,7 +170,7 @@ namespace NotepadGAP
             {
                 SaveFileDialog dialog = new SaveFileDialog();
                 dialog.Title = "Salvar...";
-                dialog.Filter = "texto|*.txt|próprio|*.npgap|todos|*.*";
+                dialog.Filter = "rich text file|*.rtf|texto|*.txt|próprio|*.npgap|todos|*.*";
                 dialog.CheckPathExists = true;
                 dialog.CheckFileExists = false;
 
@@ -196,7 +191,7 @@ namespace NotepadGAP
 
             SaveFileDialog dialog = new SaveFileDialog();
             dialog.Title = "Salvar Como...";
-            dialog.Filter = "texto|*.txt|próprio|*.npgap|todos|*.*";
+            dialog.Filter = "rich text file|*.rtf|texto|*.txt|próprio|*.npgap|todos|*.*";
             dialog.CheckPathExists = true;
             dialog.CheckFileExists = false;
 
@@ -447,7 +442,6 @@ namespace NotepadGAP
             substituirBar_btnFechar_Click(sender, e);
 
             FontDialog dialog = new FontDialog();
-            dialog.Font = txtConteudo.Font;
             dialog.ShowColor = true;
             dialog.AllowScriptChange = true;
             dialog.Color = txtConteudo.ForeColor;
@@ -456,10 +450,8 @@ namespace NotepadGAP
 
             if (result != DialogResult.Cancel && result != DialogResult.Abort)
             {
-                editorFont = dialog.Font;
-                editorForeColor = dialog.Color;
-                txtConteudo.Font = dialog.Font;
-                txtConteudo.ForeColor = dialog.Color;
+                txtConteudo.SelectionFont = dialog.Font;
+                txtConteudo.SelectionColor = dialog.Color;
             }
         }
 
@@ -629,7 +621,7 @@ namespace NotepadGAP
 
         private void SalvarArquivo(string path)
         {
-            StreamWriter writer = new StreamWriter(path, false);
+            StreamWriter writer = new StreamWriter(path, true);
             try
             {
                 string ext = (path.Contains('.'))? path.Substring(path.LastIndexOf('.')): "";
@@ -648,7 +640,10 @@ namespace NotepadGAP
                 Text = Application.ProductName + " - " + Gerenciador.FileName + Gerenciador.FileExt;
                 Gerenciador.FileSaved = true;
             }
-            catch (Exception) { throw; }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro SalvarArquivo : \n" + ex.Message);
+            }
             writer.Close();
         }
 
@@ -671,11 +666,9 @@ namespace NotepadGAP
             //define a fonte 
             StringReader leitor = new StringReader(txtConteudo.Text);
             string linha = null;
-            Font FonteDeImpressao = editorFont;
-            SolidBrush meupincel = new SolidBrush(editorForeColor);
 
             //Calcula o numero de linhas por página usando as medidas das margens
-            linhasPorPagina = e.MarginBounds.Height / FonteDeImpressao.GetHeight(e.Graphics);
+            linhasPorPagina = e.MarginBounds.Height / txtConteudo.Font.GetHeight(e.Graphics);
 
             // Vamos imprimir cada linha implementando um StringReader
             linha = leitor.ReadLine();
@@ -683,9 +676,9 @@ namespace NotepadGAP
             while (contador < linhasPorPagina)
             {
                 // calcula a posicao da proxima linha baseado  na altura da fonte de acordo com o dispostivo de impressao
-                Posicao_Y = (MargemSuperior + (contador * FonteDeImpressao.GetHeight(e.Graphics)));
+                Posicao_Y = (MargemSuperior + (contador * txtConteudo.Font.GetHeight(e.Graphics)));
                 // desenha a proxima linha no controle richtext
-                e.Graphics.DrawString(linha, FonteDeImpressao, meupincel, MargemEsquerda, Posicao_Y);
+                e.Graphics.DrawString(linha, txtConteudo.Font, new SolidBrush(txtConteudo.ForeColor), MargemEsquerda, Posicao_Y);
                 //conta a linha e incrementa uma unidade
                 contador++;
                 linha = leitor.ReadLine();
@@ -700,7 +693,6 @@ namespace NotepadGAP
             {
                 e.HasMorePages = false;
             }
-            meupincel.Dispose();
         }
 
         #region Barra Localizar
